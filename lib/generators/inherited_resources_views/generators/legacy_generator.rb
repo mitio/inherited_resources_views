@@ -8,6 +8,7 @@ class InheritedResourcesViewsGenerator < Rails::Generator::Base
       m.file "#{directory}/index.html.erb", "#{directory}/index.html.erb"
       m.file "#{directory}/new.html.erb", "#{directory}/new.html.erb"
       m.file "#{directory}/show.html.erb", "#{directory}/show.html.erb"
+      m.file "#{directory}/../../../config/locales/en.yml", "#{directory}/../../../config/locales/inherited_resources.en.yml"
     end
   end
 end

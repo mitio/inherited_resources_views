@@ -1,0 +1,19 @@
+en:
+  helpers:
+    titles:
+      index: "Listing %{model}"
+      show: "%{model}"
+      new: "New %{model}"
+      edit: "Editing %{model}"
+    actions:
+      show: "Show"
+      new: "New"
+      edit: "Edit"
+      back: "Back"
+      destroy: "Destroy"
+      options: "Options"
+    messages:
+      destroy_confirm: "Are you sure?"
+      errors:
+        one:   "1 error prohibited this %{model} from being saved:"
+        other: "%{count} errors prohibited this %{model} from being saved:"

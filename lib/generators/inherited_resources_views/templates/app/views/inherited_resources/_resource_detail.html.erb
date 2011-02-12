@@ -1,8 +1,8 @@
-<table class="<%= collection.first.class.to_s.downcase %> detail">
-<% resource.attributes.each_pair do |attr, value| %>
-  <% next if ['id', 'created_at', 'updated_at'].include?(attr) %>
+<table class="<%= resource_instance_name %> detail">
+<% resource.attributes.each_pair do |field, value| %>
+  <% next if ['id', 'created_at', 'updated_at'].include?(field) %>
   <tr>
-    <th><%= attr.titleize %></th>
+    <th><%= resource.class.human_attribute_name(field) %></th>
     <td><%= value %></td>
   </tr>
 <% end %>

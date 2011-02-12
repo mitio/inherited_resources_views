@@ -1,13 +1,11 @@
-<table class="<%= collection.first.class.to_s.downcase.pluralize %> collection">
+<table class="<%= resource_collection_name %> collection">
   <thead>
     <tr>
     <% collection.first.attributes.each_pair do |field, value| %>
       <% next if ['id', 'created_at', 'updated_at'].include?(field) %>
-      <th><%= field.titleize %></th>
+      <th><%= collection.first.class.human_attribute_name(field) %></th>
     <% end %>
-    <th>Show</th>
-    <th>Edit</th>
-    <th>Destroy</th>
+    <th colspan="3"><%= human_action(:options) %></th>
     </tr>
   </thead>
   <tbody>
@@ -17,9 +15,11 @@
       <% next if ['id', 'created_at', 'updated_at'].include?(field) %>
       <td><%= value %></td>
     <% end %>
-      <td><%= link_to "Show", resource_url(r) %></td>
-      <td><%= link_to "Edit", edit_resource_url(r) %></td>
-      <td><%= link_to "Destroy", resource_url(r), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to human_action(:show), resource_url(r) %></td>
+      <td><%= link_to human_action(:edit), edit_resource_url(r) %></td>
+      <td><%= link_to human_action(:destroy), resource_url(r),
+        :confirm => t('helpers.messages.destroy_confirm', :default => 'Are you sure?'),
+        :method => :delete %></td>
     </tr>
   <% end %>
   </tbody>

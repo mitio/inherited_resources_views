@@ -19,6 +19,10 @@ class InheritedResourcesViewsGenerator < Rails::Generators::Base
     end
   end
 
+  def copy_locale
+    copy_file "../../config/locales/en.yml", "config/locales/inherited_resources.en.yml"
+  end
+
   protected
 
   def verify_haml_existence
