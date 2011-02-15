@@ -1,13 +1,13 @@
 module InheritedResourcesViews
   module ActionView
-    def self.included(base)
-      base.class_eval do
-        def self.process_view_paths(value)
-          PathSet.new(Array.wrap(value))
-        end
+    extend ActiveSupport::Concern
+
+    included do
+      def self.process_view_paths(value)
+        PathSet.new(Array.wrap(value))
       end
     end
-    
+
     class PathSet < ::ActionView::PathSet
       def find(path, prefix = nil, partial = false, details = {}, key = nil)
         super

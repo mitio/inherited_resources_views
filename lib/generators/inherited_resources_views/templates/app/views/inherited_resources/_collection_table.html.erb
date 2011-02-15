@@ -1,23 +1,21 @@
 <table class="<%= resource_collection_name %> collection">
   <thead>
     <tr>
-    <% collection.first.attributes.each_pair do |field, value| %>
-      <% next if ['id', 'created_at', 'updated_at'].include?(field) %>
-      <th><%= collection.first.class.human_attribute_name(field) %></th>
+    <% index_fields.each do |field| %>
+      <th><%= resource_class.human_attribute_name(field) %></th>
     <% end %>
     <th colspan="3"><%= human_action(:options) %></th>
     </tr>
   </thead>
   <tbody>
-  <% collection.each do |r| %>
+  <% collection.each do |resource| %>
     <tr>
-    <% r.attributes.each_pair do |field, value| %>
-      <% next if ['id', 'created_at', 'updated_at'].include?(field) %>
-      <td><%= value %></td>
+    <% index_fields.each do |field| %>
+      <td><%= display_field(resource, field) %></td>
     <% end %>
-      <td><%= link_to human_action(:show), resource_url(r) %></td>
-      <td><%= link_to human_action(:edit), edit_resource_url(r) %></td>
-      <td><%= link_to human_action(:destroy), resource_url(r),
+      <td><%= link_to human_action(:show), resource_url(resource) %></td>
+      <td><%= link_to human_action(:edit), edit_resource_url(resource) %></td>
+      <td><%= link_to human_action(:destroy), resource_url(resource),
         :confirm => t('helpers.messages.destroy_confirm', :default => 'Are you sure?'),
         :method => :delete %></td>
     </tr>

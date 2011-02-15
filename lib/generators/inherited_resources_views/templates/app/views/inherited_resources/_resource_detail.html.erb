@@ -1,9 +1,8 @@
 <table class="<%= resource_instance_name %> detail">
-<% resource.attributes.each_pair do |field, value| %>
-  <% next if ['id', 'created_at', 'updated_at'].include?(field) %>
+<% show_fields.each do |field| %>
   <tr>
     <th><%= resource.class.human_attribute_name(field) %></th>
-    <td><%= value %></td>
+    <td><%= display_field(resource, field) %></td>
   </tr>
 <% end %>
 </table>

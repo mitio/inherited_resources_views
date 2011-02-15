@@ -2,7 +2,7 @@
 <% form_for(resource,
       :as => resource_instance_name,
       :url => resource.new_record? ? collection_url : resource_url(resource),
-      :html => { :method => (resource.new_record? ? "post" : "put") }) do |f| %>
+      :html => { :method => (resource.new_record? ? "post" : "put") }) do |form| %>
   <% if resource.errors.any? %>
   <tr>
     <td colspan="2">
@@ -15,15 +15,14 @@
     </td>
   </tr>
   <% end %>
-  <% resource.attributes.each_pair do |field, value| %>
-    <% next if ['id', 'created_at', 'updated_at'].include?(field) %>
+  <% form_fields.each do |field| %>
     <tr>
-      <td><%= f.label field %></td>
-      <td><%= f.text_field field %></td>
+      <td><%= form.label(field) %></td>
+      <td><%= form_field(form, resource, field) %></td>
     </tr>
   <% end %>
   <tr>
-    <td colspan="2"><%= f.submit %></td>
+    <td colspan="2"><%= form.submit %></td>
   </tr>
 <% end %>
 </table>
