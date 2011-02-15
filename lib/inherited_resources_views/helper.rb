@@ -53,14 +53,14 @@ module InheritedResourcesViews
 
       # Defines which fields to use on views.
       #
-      #   fields :name, :description
-      #   fields :all, :except => :description
+      #   fields :title, :body, :category, :comments
+      #   fields :all, :except => :comments
       #
       # or on specific views (index, show, form):
       #
-      #   index_fields :name
-      #   show_fields :all, except => :password
-      #   form_fields :all
+      #   index_fields :title, :category
+      #   show_fields :all
+      #   form_fields :all, :except => :comments
       #
       # or which fields must be hidden:
       #
@@ -70,7 +70,7 @@ module InheritedResourcesViews
       # which is very useful when using the +:all+ option:
       #
       #   fields :title, :body, :category, :comments
-      #   show_fields :all # show all fields including the hidden ones (id, created_at, updated_at and password).
+      #   show_fields :all # show all fields including the hidden ones (id, created_at and updated_at).
       #   index_fields :all, :except => [:hidden, :body, :comments] # just show both title and category fields.
       #
       instance_eval do

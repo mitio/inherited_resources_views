@@ -1,6 +1,6 @@
 
 Gem::Specification.new do |s|
-  s.name = "inherited_resources_views"
+  s.name = 'jweslley-inherited_resources_views'
   s.version = `git tag | tail -1`.strip.gsub(/^v/,'')
   s.platform = Gem::Platform::RUBY
   s.authors = ["Fred Wu", "Jonhnny Weslley"]
