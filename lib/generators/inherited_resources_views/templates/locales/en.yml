@@ -6,10 +6,12 @@ en:
       new: "New %{model}"
       edit: "Editing %{model}"
     actions:
+      index: "List"
       show: "Show"
       new: "New"
       edit: "Edit"
       back: "Back"
+      cancel: "Cancel"
       destroy: "Destroy"
       options: "Options"
     messages:

@@ -1,0 +1,33 @@
+<%= form_for(resource,
+      :as => resource_instance_name,
+      :url => resource.new_record? ? collection_url : resource_url(resource),
+      :html => { :method => (resource.new_record? ? "post" : "put"), :class => :form }) do |form| %>
+  <% if resource.errors.any? %>
+    <div>
+      <h2><%= t('helpers.messages.errors', :count => resource.errors.count, :model => resource.class.model_name.human.downcase) %></h2>
+      <ul>
+      <% resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% form_fields.each do |field| %>
+    <div class="group">
+      <%= form.label(field, :class => :label) %>
+      <%= form_field(form, resource, field) %>
+      <span class="description">
+        <%= t("activerecord.descriptions.#{resource_instance_name}.#{field}", :default => '') %>
+      </span>
+    </div>
+  <% end %>
+
+  <div class="group navform wat-cf">
+    <button class="button" type="submit">
+      <%= image_tag("web-app-theme/icons/tick.png") %>
+      <%= t("helpers.submit.#{resource.new_record? ? :create : :update}", :model => human_resource, :default => "Save") %>
+    </button>
+    <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+    <%= link_to human_action(:cancel), collection_url, :class => "text_button_padding link_button" %>
+  </div>
+<% end %>

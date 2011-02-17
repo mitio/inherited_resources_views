@@ -1,0 +1,26 @@
+<table class="table">
+  <tr>
+    <% index_fields.each_with_index do |field, index| %>
+      <th class="<%= index == 0 ? 'first' : '' %>"><%= resource_class.human_attribute_name(field) %></th>
+    <% end %>
+    <th class="last">&nbsp;</th>
+  </tr>
+  <% collection.each do |resource| %>
+    <%= content_tag_for(:tr, resource, :class => cycle("odd", "even")) do %>
+      <% index_fields.each do |field| %>
+        <td><%= display_field(resource, field) %></td>
+      <% end %>
+      <td class="last">
+        <%= link_to human_action(:show), resource_url(resource) %> |
+        <%= link_to human_action(:edit), edit_resource_url(resource) %> |
+        <%= link_to human_action(:destroy), resource_url(resource), :method => :delete,
+          :confirm => t('helpers.messages.destroy_confirm', :default => 'Are you sure?') %>
+      </td>
+    <% end %>
+  <% end %>
+</table>
+
+<div class="actions-bar wat-cf">
+  <div class="actions">
+  </div>
+</div>

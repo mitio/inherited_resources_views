@@ -1,9 +1,12 @@
 class InheritedResourcesViewsGenerator < Rails::Generators::Base
   source_root File.expand_path("../templates", __FILE__)
 
-  desc "Generates inherited_resource_views templates."
+  desc "Generates inherited_resources_views templates."
 
-  class_option :template_engine, :type => :string, :aliases => "-t",
+  class_option :layout, :type => :string, :aliases => "-l", :default => :basic,
+                        :desc => "Generate views using the specified LAYOUT. Available options are 'basic' and 'web-app-theme'."
+
+  class_option :template_engine, :type => :string, :aliases => "-t", :default => :erb,
                                  :desc => "Template engine for the views. Available options are 'erb' and 'haml'."
 
   def copy_views
@@ -13,15 +16,21 @@ class InheritedResourcesViewsGenerator < Rails::Generators::Base
       verify_haml_version
       create_and_copy_haml_views
     else
-      directory "app/views/inherited_resources", "app/views/inherited_resources"
+      directory "views/#{layout}", "app/views/inherited_resources"
     end
   end
 
   def copy_locale
-    copy_file "config/locales/en.yml", "config/locales/inherited_resources.en.yml"
+    copy_file "locales/en.yml", "config/locales/inherited_resources.en.yml"
   end
 
   protected
+
+  def layout
+    return options[:layout] if ['basic', 'web-app-theme'].include? options[:layout].to_s
+    say "Invalid layout: #{options[:layout]}.\nAvailable options are 'basic' and 'web-app-theme'."
+    exit 42
+  end
 
   def verify_haml_existence
     begin
@@ -55,7 +64,7 @@ class InheritedResourcesViewsGenerator < Rails::Generators::Base
     end
 
     require 'tmpdir'
-    html_root = "#{self.class.source_root}/app/views/inherited_resources"
+    html_root = "#{self.class.source_root}/views/#{layout}"
 
     Dir.mktmpdir("inherited_resources_views-haml.") do |haml_root|
       Dir["#{html_root}/**/*"].each do |path|

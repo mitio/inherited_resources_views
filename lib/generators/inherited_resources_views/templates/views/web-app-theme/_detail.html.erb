@@ -1,0 +1,15 @@
+<% show_fields.each do |field| %>
+  <p>
+    <b><%= resource.class.human_attribute_name(field) %>:</b>
+    <%= display_field(resource, field) %>
+  </p>
+<% end %>
+
+<div class="wat-cf">
+  <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => human_action(:edit)) +
+    " " + human_action(:edit), edit_resource_url, :class => "button" %>
+
+  <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => human_action(:destroy)) +
+    " " + human_action(:destroy), resource_url, :method => "delete", :class => "button",
+    :confirm => t('helpers.messages.destroy_confirm', :default => 'Are you sure?') %>
+</div>

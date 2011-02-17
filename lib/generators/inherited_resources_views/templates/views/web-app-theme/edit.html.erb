@@ -1,0 +1,11 @@
+<div class="block">
+  <%= render "edit_navigation" %>
+  <div class="content">
+    <h2 class="title"><%= action_title(:edit) %></h2>
+    <div class="inner">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') %>
