@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README.md"]
   s.require_paths = ["lib"]
 
-  s.add_dependency("inherited_resources", "~> 1.0")
+  s.add_dependency("inherited_resources", "~> 1.2.1")
   s.add_dependency("hpricot", "~> 0")
   s.add_dependency("ruby_parser", "~> 0")
 end
