@@ -26,27 +26,61 @@ module InheritedResourcesViews
 
       def display_field(resource, field)
         if respond_to?(helper = "#{field}_display")
-          send helper, resource
+          send(helper, resource)
         else
-          default_display_field resource, field
+          default_display_field(resource, field)
         end
       end
 
       def default_display_field(resource, field)
-        resource.send field
+        case column_type(resource, field)
+        when :string
+          field.include?('password') ? '******' : resource.send(field)
+        when :text, :integer, :boolean
+          resource.send(field)
+        when :float, :decimal
+          number_with_precision(resource.send(field))
+        when :date, :time, :datetime, :timestamp
+          I18n.l(resource.send(field))
+        else
+          resource.send(field)
+        end
       end
 
       def form_field(form, resource, field)
         if respond_to?(helper = "#{field}_form_field")
-          send helper, form, resource
+          send(helper, form, resource)
         else
-          default_form_field form, resource, field
+          default_form_field(form, resource, field)
         end
       end
 
       def default_form_field(form, resource, field)
-        form.text_field field
+        case column_type(resource, field)
+        when :string
+          field.include?('password') ? form.password_field(field) : form.text_field(field)
+        when :text
+          form.text_area(field)
+        when :integer, :float, :decimal
+          form.text_field(field)
+        when :date
+          form.date_select(field)
+        when :datetime, :timestamp
+          form.datetime_select(field)
+        when :time
+          form.time_select(field)
+        when :boolean
+          form.check_box(field)
+        else
+          form.text_field(field)
+        end
       end
+
+      private
+
+        def column_type(resource, field)
+          resource.column_for_attribute(field).type
+        end
     end
 
     module ClassMethods
