@@ -1,7 +1,7 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
-    <li class="first"><%= link_to human_action(:index), collection_url %></li>
-    <li><%= link_to human_action(:new), new_resource_url %></li>
-    <li class="active"><%= link_to human_action(:edit), edit_resource_url %></li>
+    <li class="first"><%= link_to_if(action_defined?(:index), human_action(:index), collection_url){} %></li>
+    <li><%= link_to_if(action_defined?(:new), human_action(:new), new_resource_url){} %></li>
+    <li class="active"><%= link_to_if(action_defined?(:edit), human_action(:edit), edit_resource_url){} %></li>
   </ul>
 </div>

@@ -1,2 +1,4 @@
-<p><%= link_to human_action(:edit), edit_resource_url(resource) %></p>
+<% if action_defined?(:edit) %>
+  <p><%= link_to human_action(:edit), edit_resource_url(resource) %></p>
+<% end %>
 <p><%= link_to human_action(:back), collection_url %></p>

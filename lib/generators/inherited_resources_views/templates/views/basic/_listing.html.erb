@@ -13,11 +13,11 @@
     <% index_fields.each do |field| %>
       <td><%= display_field(resource, field) %></td>
     <% end %>
-      <td><%= link_to human_action(:show), resource_url(resource) %></td>
-      <td><%= link_to human_action(:edit), edit_resource_url(resource) %></td>
-      <td><%= link_to human_action(:destroy), resource_url(resource),
+      <td><%= link_to_if(action_defined?(:show), human_action(:show), resource_url(resource)){} %></td>
+      <td><%= link_to_if(action_defined?(:edit), human_action(:edit), edit_resource_url(resource)){} %></td>
+      <td><%= link_to_if(action_defined?(:destroy), human_action(:destroy), resource_url(resource),
         :confirm => t('helpers.messages.destroy_confirm', :default => 'Are you sure?'),
-        :method => :delete %></td>
+        :method => :delete){} %></td>
     </tr>
   <% end %>
   </tbody>

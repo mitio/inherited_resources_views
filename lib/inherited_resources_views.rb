@@ -2,9 +2,6 @@ require 'inherited_resources_views/action_view'
 require 'inherited_resources_views/i18n_helper'
 require 'inherited_resources_views/helper'
 
-ActionView::Base.send :include, InheritedResourcesViews::ActionView
-ActionView::Base.send :include, InheritedResourcesViews::I18nHelper
-
 # Clears up all existing helpers in this class, only keeping
 # the helper with the same name as this class, ApplicationHelper
 # and InheritedResourcesViews::Helper.
@@ -31,7 +28,17 @@ class InheritedResources::Base
 
   private
   def self.include_helpers(base)
-    base.clear_helpers
-    base.helper ::ApplicationHelper, InheritedResourcesViews::Helper
+    base.class_eval do
+      clear_helpers
+      helper ::ApplicationHelper,
+        InheritedResourcesViews::I18nHelper,
+        InheritedResourcesViews::Helper
+
+      helper_method :action_defined?
+      private
+        def action_defined?(action)
+          respond_to? action and respond_to? "#{action}!"
+        end
+    end
   end
 end

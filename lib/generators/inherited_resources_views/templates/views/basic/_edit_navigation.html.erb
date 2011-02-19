@@ -1,2 +1,4 @@
-<p><%= link_to human_action(:show), resource_url(resource) %></p>
+<% if action_defined?(:show) %>
+  <p><%= link_to human_action(:show), resource_url(resource) %></p>
+<% end %>
 <p><%= link_to human_action(:back), collection_url %></p>

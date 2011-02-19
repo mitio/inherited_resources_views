@@ -24,3 +24,5 @@ module InheritedResourcesViews
     end
   end
 end
+
+ActionView::Base.send :include, InheritedResourcesViews::ActionView

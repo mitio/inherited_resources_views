@@ -11,10 +11,16 @@
         <td><%= display_field(resource, field) %></td>
       <% end %>
       <td class="last">
-        <%= link_to human_action(:show), resource_url(resource) %> |
-        <%= link_to human_action(:edit), edit_resource_url(resource) %> |
-        <%= link_to human_action(:destroy), resource_url(resource), :method => :delete,
-          :confirm => t('helpers.messages.destroy_confirm', :default => 'Are you sure?') %>
+        <% if action_defined?(:show) %>
+          <%= link_to human_action(:show), resource_url(resource) %>
+        <% end %>
+        <% if action_defined?(:edit) %>
+          | <%= link_to human_action(:edit), edit_resource_url(resource) %>
+        <% end %>
+        <% if action_defined?(:destroy) %>
+          | <%= link_to human_action(:destroy), resource_url(resource), :method => :delete,
+                  :confirm => t('helpers.messages.destroy_confirm', :default => 'Are you sure?') %>
+        <% end %>
       </td>
     <% end %>
   <% end %>
