@@ -15,8 +15,22 @@ ActionView::Base.send :include, InheritedResourcesViews::I18nHelper
 # helpers using the same method names, this is a very bad thing.
 #
 class InheritedResources::Base
+  instance_eval do
+    alias :inherit_resources_original :inherit_resources
+  end
+
+  def self.inherit_resources(base)
+    inherit_resources_original(base)
+    include_helpers(base)
+  end
+
   def self.inherited(base)
     super
+    include_helpers(base)
+  end
+
+  private
+  def self.include_helpers(base)
     base.clear_helpers
     base.helper ::ApplicationHelper, InheritedResourcesViews::Helper
   end
