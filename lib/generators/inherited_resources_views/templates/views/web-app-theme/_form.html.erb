@@ -3,7 +3,7 @@
       :url => resource.new_record? ? collection_url : resource_url(resource),
       :html => { :method => (resource.new_record? ? "post" : "put"), :class => :form }) do |form| %>
   <% if resource.errors.any? %>
-    <div>
+    <div id="error_explanation">
       <h2><%= t('helpers.messages.errors', :count => resource.errors.count, :model => resource.class.model_name.human.downcase) %></h2>
       <ul>
       <% resource.errors.full_messages.each do |msg| %>
