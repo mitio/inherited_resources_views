@@ -1,4 +1,7 @@
 en:
+  boolean:
+    :true: 'Yes'
+    :false: 'No'
   helpers:
     titles:
       index: "Listing %{model}"

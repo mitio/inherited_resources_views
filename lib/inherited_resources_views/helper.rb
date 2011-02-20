@@ -45,8 +45,17 @@ module InheritedResourcesViews
         def default_display_field(resource, field)
           case column_type(resource, field)
           when :string
-            field.include?('password') ? '******' : resource.send(field)
-          when :text, :integer, :boolean
+            if field.include?('password')
+              '******'
+            elsif field.include?('email')
+              mail_to(resource.send(field))
+            else
+              resource.send(field)
+            end
+          when :boolean
+            value = resource.send(field)
+            I18n.t("boolean.#{value}", :default => value)
+          when :text, :integer
             resource.send(field)
           when :float, :decimal
             number_with_precision(resource.send(field))
