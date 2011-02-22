@@ -60,7 +60,8 @@ module InheritedResourcesViews
           when :float, :decimal
             number_with_precision(resource.send(field))
           when :date, :time, :datetime, :timestamp
-            I18n.l(resource.send(field))
+            value = resource.send(field)
+            I18n.l(value) if value
           else
             resource.send(field)
           end
