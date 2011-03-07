@@ -13,13 +13,15 @@
     </div>
   <% end %>
   <% form_fields.each do |field| %>
-    <div class="group">
-      <%= form.label(field, :class => :label) %>
-      <%= form_field(form, resource, field) %>
-      <span class="description">
-        <%= t("activerecord.descriptions.#{resource_instance_name}.#{field}", :default => '') %>
-      </span>
-    </div>
+    <% if form_input = form_field(form, resource, field) %>
+      <div class="group">
+        <%= form.label(field, :class => :label) %>
+        <%= form_input %>
+        <span class="description">
+          <%= t("activerecord.descriptions.#{resource_instance_name}.#{field}", :default => '') %>
+        </span>
+      </div>
+    <% end %>
   <% end %>
 
   <div class="group navform wat-cf">

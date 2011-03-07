@@ -18,10 +18,12 @@
   </tr>
   <% end %>
   <% form_fields.each do |field| %>
-    <tr>
-      <td><%= form.label(field) %></td>
-      <td><%= form_field(form, resource, field) %></td>
-    </tr>
+    <% if form_input = form_field(form, resource, field) %>
+      <tr>
+        <td><%= form.label(field) %></td>
+        <td><%= form_input %></td>
+      </tr>
+    <% end %>
   <% end %>
   <tr>
     <td colspan="2"><%= form.submit %></td>
