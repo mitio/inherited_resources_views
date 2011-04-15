@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency("inherited_resources", "~> 1.2.1")
-  s.add_dependency("hpricot", "~> 0")
-  s.add_dependency("ruby_parser", "~> 0")
+  s.add_dependency("hpricot", "~> 0.8.2")
+  s.add_dependency("ruby_parser", "~> 2.0.6")
 end
