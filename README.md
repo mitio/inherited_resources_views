@@ -27,7 +27,7 @@ If you are confused about the difference to some other similarly named projects,
 
 Add it to your `Gemfile`:
 
-    gem "jweslley-inherited_resources_views"
+    gem "mitio-inherited_resources_views"
 
 Install using `bundle`:
 
@@ -49,7 +49,8 @@ This will generate a set of views in your `app/views/inherited_resources` folder
 
 If you discover any bugs or have some idea, feel free to create an issue on GitHub:
 
-<https://github.com/jweslley/inherited_resources_views/issues>
+* here: <https://github.com/mitio/inherited_resources_views/issues>
+* or here: <https://github.com/jweslley/inherited_resources_views/issues>
 
 
 ## Authors
