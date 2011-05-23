@@ -1,6 +1,6 @@
 
 Gem::Specification.new do |s|
-  s.name = 'jweslley-inherited_resources_views'
+  s.name = 'mitio-inherited_resources_views'
   s.version = `git tag | tail -1`.strip.gsub(/^v/,'')
   s.platform = Gem::Platform::RUBY
   s.authors = ["Fred Wu", "Jonhnny Weslley"]
@@ -16,6 +16,4 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency("inherited_resources", "~> 1.2.1")
-  s.add_dependency("hpricot", "~> 0")
-  s.add_dependency("ruby_parser", "~> 0")
 end
