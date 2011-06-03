@@ -12,7 +12,8 @@ module InheritedResourcesViews
       def find(path, prefix = nil, partial = false, details = {}, key = nil)
         super
       rescue ::ActionView::MissingTemplate
-        super(path, "inherited_resources", partial, details, key)
+        prefix.to_s.sub!(/[\w]+$/, "inherited_resources")
+        super
       end
       
       def find_template(original_template_path, format = nil, html_fallback = true)
