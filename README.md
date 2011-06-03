@@ -27,12 +27,15 @@ If you are confused about the difference to some other similarly named projects,
 
 Add it to your `Gemfile`:
 
-    gem "mitio-inherited_resources_views"
+    gem 'mitio-inherited_resources_views'
 
 Install using `bundle`:
 
     bundle install
 
+You also need to require the proper library in order to "inject" the necessary code into `ActionView`. For example, in a file under `config/initializers` add the following code:
+
+	require 'inherited_resources_views'
 
 ## Usage
 
